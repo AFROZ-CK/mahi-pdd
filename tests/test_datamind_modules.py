@@ -17,7 +17,6 @@ class DataMindModuleTests(unittest.TestCase):
         imputed = GapHandler.impute(df, method="mean")
         self.assertFalse(imputed["value"].isna().any())
 
-
     def test_gap_handler_invalid_method_raises(self) -> None:
         df = pd.DataFrame({"value": [1.0, None]})
         with self.assertRaises(ValueError):
@@ -31,7 +30,6 @@ class DataMindModuleTests(unittest.TestCase):
     def test_decision_engine_high_priority(self) -> None:
         decision = DecisionEngine.recommend({"anomaly_score": 0.95})
         self.assertEqual(decision["priority"], "high")
-
 
 if __name__ == "__main__":
     unittest.main()
