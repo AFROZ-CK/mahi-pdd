@@ -1,4 +1,6 @@
 import os
+import sys
+from pathlib import Path
 
 from dotenv import load_dotenv
 from fastapi import FastAPI
@@ -21,8 +23,12 @@ def health() -> dict[str, str]:
 
 
 if __name__ == "__main__":
+    project_root = str(Path(__file__).resolve().parent.parent)
+    if project_root not in sys.path:
+        sys.path.insert(0, project_root)
+
     uvicorn.run(
-        "main:app",
+        "app.main:app",
         host=os.getenv("HOST", "127.0.0.1"),
         port=int(os.getenv("PORT", "8000")),
         reload=os.getenv("RELOAD", "false").lower() == "true",
