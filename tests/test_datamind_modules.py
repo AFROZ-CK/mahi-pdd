@@ -17,6 +17,12 @@ class DataMindModuleTests(unittest.TestCase):
         imputed = GapHandler.impute(df, method="mean")
         self.assertFalse(imputed["value"].isna().any())
 
+
+    def test_gap_handler_invalid_method_raises(self) -> None:
+        df = pd.DataFrame({"value": [1.0, None]})
+        with self.assertRaises(ValueError):
+            GapHandler.impute(df, method="unsupported")
+
     def test_preprocessor_cleans_columns(self) -> None:
         df = pd.DataFrame({" Sales Value ": [1, 2]})
         cleaned = Preprocessor.clean(df)
