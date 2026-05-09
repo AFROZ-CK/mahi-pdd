@@ -1,0 +1,6 @@
+timestamp,sales,inventory,region,target
+2026-01-01,120,50,north,130
+2026-01-02,135,47,north,138
+2026-01-03,90,55,south,96
+2026-01-04,160,42,east,168
+2026-01-05,,40,west,150
